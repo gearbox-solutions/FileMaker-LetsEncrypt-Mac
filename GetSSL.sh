@@ -2,8 +2,8 @@
 
 # Created by: David Nahodyl, Blue Feather
 # Contact: contact@bluefeathergroup.com
-# Date: 1/24/2019
-# Version: 0.2
+# Date: 2/1/2019
+# Version: 0.3
 
 # Need help? We can set this up to run on your server for you! Send an email to 
 # contact@bluefeathergroup.com or give a call at (770) 765-6258
@@ -29,13 +29,13 @@ WEB_ROOT="${SERVER_PATH}HTTPServer/htdocs"
 # Get the certificate
 certbot certonly --webroot -w "$WEB_ROOT" -d $DOMAIN --agree-tos -m "$EMAIL" --preferred-challenges "http" -n
 
-cp /etc/letsencrypt/live/${DOMAIN}/fullchain.pem ${SERVER_PATH}CStore/fullchain.pem
-cp /etc/letsencrypt/live/${DOMAIN}/privkey.pem ${SERVER_PATH}CStore/privkey.pem
+cp "/etc/letsencrypt/live/${DOMAIN}/fullchain.pem" "${SERVER_PATH}CStore/fullchain.pem"
+cp "/etc/letsencrypt/live/${DOMAIN}/privkey.pem" "${SERVER_PATH}CStore/privkey.pem"
 
-chmod 640 ${SERVER_PATH}CStore/privkey.pem
+chmod 640 "${SERVER_PATH}CStore/privkey.pem"
 
 # Move an old certificate, if there is one, to prevent an error
-mv "${SERVER_PATH}Store/serverKey.pem" "${SERVER_PATH}CStore/serverKey-old.pem"
+mv "${SERVER_PATH}CStore/serverKey.pem" "${SERVER_PATH}CStore/serverKey-old.pem"
 
 # Install the certificate
 fmsadmin certificate import "${SERVER_PATH}CStore/fullchain.pem" --keyfile "${SERVER_PATH}CStore/privkey.pem" -y
