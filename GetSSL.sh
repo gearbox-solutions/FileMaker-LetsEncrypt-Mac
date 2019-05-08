@@ -2,8 +2,8 @@
 
 # Created by: David Nahodyl, Blue Feather
 # Contact: contact@bluefeathergroup.com
-# Date: 2/1/2019
-# Version: 0.3
+# Date: 5/7/2019
+# Version: 0.4
 
 # Need help? We can set this up to run on your server for you! Send an email to 
 # contact@bluefeathergroup.com or give a call at (770) 765-6258
@@ -36,6 +36,9 @@ chmod 640 "${SERVER_PATH}CStore/privkey.pem"
 
 # Move an old certificate, if there is one, to prevent an error
 mv "${SERVER_PATH}CStore/serverKey.pem" "${SERVER_PATH}CStore/serverKey-old.pem"
+
+# Remove the old certificate
+fmsadmin certificate delete
 
 # Install the certificate
 fmsadmin certificate import "${SERVER_PATH}CStore/fullchain.pem" --keyfile "${SERVER_PATH}CStore/privkey.pem" -y
