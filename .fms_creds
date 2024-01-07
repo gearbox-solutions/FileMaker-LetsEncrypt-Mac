@@ -1,0 +1,4 @@
+export CERTBOT_DOMAIN="www.example.com"
+export FILEMAKER_SERVER_PATH="/Library/FileMaker Server/"
+export FILEMAKER_SERVER_ADMIN=""
+export FILEMAKER_SERVER_PWORD=""
